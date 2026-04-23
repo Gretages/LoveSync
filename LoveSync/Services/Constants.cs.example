@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace LoveSync
+{
+    public static class Constants
+    {
+        public const string FirebaseApiKey = "YOUR_API_KEY_HERE";
+        public const string FirebaseDatabaseUrl = "https://your-project-id.firebaseio.com/";
+        public const string FirebaseAuthDomain = "your-project-id.firebaseapp.com";
+    }
+}

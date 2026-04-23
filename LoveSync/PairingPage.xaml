@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LoveSync.ViewModels"
+             x:Class="LoveSync.PairingPage"
+             Title="Párosítás"
+             BackgroundColor="#1e1e1e"
+             Shell.NavBarIsVisible="False">
+
+    <VerticalStackLayout Spacing="30" Padding="30" VerticalOptions="Center">
+
+        <Label Text="Találd meg a párod!" 
+               FontSize="28" FontAttributes="Bold" 
+               TextColor="#E91E63" HorizontalOptions="Center"/>
+
+        <Frame BackgroundColor="#2d2d2d" BorderColor="#E91E63" CornerRadius="20" Padding="20">
+            <VerticalStackLayout Spacing="15">
+                <Label Text="Ha te kezdeményezel:" TextColor="White" HorizontalOptions="Center"/>
+
+                <Label Text="{Binding GeneratedCode}" 
+                       FontSize="40" HorizontalOptions="Center" 
+                       TextColor="White" FontAttributes="Bold"
+                       IsVisible="{Binding GeneratedCode, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"/>
+
+                <Button Text="Kód generálása" 
+                        Command="{Binding GenerateCodeCommand}" 
+                        BackgroundColor="#E91E63" 
+                        TextColor="White"
+                        CornerRadius="20"
+                        HeightRequest="50"
+                        WidthRequest="250"
+                        HorizontalOptions="Center"
+                        FontAttributes="Bold"/>
+            </VerticalStackLayout>
+        </Frame>
+
+        <Label Text="- VAGY -" HorizontalOptions="Center" TextColor="Gray"/>
+
+        <Frame BackgroundColor="#2d2d2d" BorderColor="#E91E63" CornerRadius="20" Padding="20">
+            <VerticalStackLayout Spacing="15">
+                <Label Text="Ha kaptál kódot:" TextColor="White" HorizontalOptions="Center"/>
+
+                <Entry Placeholder="Írd be a kódot" 
+                       Text="{Binding InputCode}" 
+                       TextColor="White" 
+                       PlaceholderColor="Gray" 
+                       HorizontalTextAlignment="Center"
+                       BackgroundColor="#404040"
+                       HeightRequest="50"
+                       WidthRequest="250"/>
+
+                <Button Text="Csatlakozás" 
+                        Command="{Binding JoinWithCodeCommand}" 
+                        BackgroundColor="Transparent" 
+                        TextColor="#E91E63"
+                        BorderColor="#E91E63"
+                        BorderWidth="2"
+                        CornerRadius="20"
+                        HeightRequest="50"
+                        WidthRequest="250"
+                        HorizontalOptions="Center"
+                        FontAttributes="Bold"/>
+            </VerticalStackLayout>
+        </Frame>
+
+        <Label Text="{Binding StatusMessage}" TextColor="Yellow" HorizontalOptions="Center"/>
+
+    </VerticalStackLayout>
+</ContentPage>

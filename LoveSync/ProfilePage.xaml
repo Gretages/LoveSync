@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LoveSync.ViewModels"
+             x:Class="LoveSync.ProfilePage"
+             Title="Profil"
+             BackgroundColor="#1e1e1e">
+
+    <ContentPage.BindingContext>
+        <vm:ProfileViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30" VerticalOptions="Center">
+
+            <Frame HeightRequest="150" WidthRequest="150" CornerRadius="75" 
+                   BackgroundColor="#2d2d2d" BorderColor="#E91E63" Padding="0" HorizontalOptions="Center" IsClippedToBounds="True">
+
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangeProfilePictureCommand}"/>
+                </Frame.GestureRecognizers>
+
+                <Grid>
+                    <Label Text="📷" FontSize="50" TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center" Opacity="0.3"/>
+
+                    <Image Source="{Binding ProfileImage}" 
+                           Aspect="AspectFill"
+                           HorizontalOptions="Fill" VerticalOptions="Fill"/>
+                </Grid>
+            </Frame>
+
+            <Label Text="(Kattints a képre a módosításhoz)" TextColor="Gray" FontSize="10" HorizontalOptions="Center" Margin="0,-15,0,0"/>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="{Binding Email}" 
+                       FontSize="20" FontAttributes="Bold" 
+                       TextColor="White" HorizontalOptions="Center"/>
+
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                    <Label Text="Párod:" TextColor="Gray"/>
+                    <Label Text="{Binding PartnerEmail}" TextColor="#E91E63"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+            <Frame BackgroundColor="#252525" CornerRadius="15" BorderColor="Gray" Padding="15">
+                <Grid ColumnDefinitions="*, *, *" RowDefinitions="Auto, Auto" RowSpacing="5">
+
+                    <Label Grid.Row="0" Grid.Column="0" Text="🗳️" HorizontalOptions="Center" FontSize="20"/>
+                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding TotalVotes, StringFormat='{0} szavazat'}" 
+                           TextColor="White" HorizontalOptions="Center" FontSize="12" HorizontalTextAlignment="Center"/>
+
+                    <Label Grid.Row="0" Grid.Column="1" Text="❤️" HorizontalOptions="Center" FontSize="20"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding MatchCount, StringFormat='{0} match'}" 
+                           TextColor="White" HorizontalOptions="Center" FontSize="12" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+
+                    <Label Grid.Row="0" Grid.Column="2" Text="🏆" HorizontalOptions="Center" FontSize="20"/>
+                    <Label Grid.Row="1" Grid.Column="2" Text="{Binding FavoriteCategory}" 
+                           TextColor="White" HorizontalOptions="Center" FontSize="12" HorizontalTextAlignment="Center"/>
+
+                </Grid>
+            </Frame>
+
+            <BoxView HeightRequest="1" Color="#404040" Margin="0,10"/>
+
+            <Button Text="Szakítás / Szétválás 💔" 
+                    Command="{Binding UnpairCommand}"
+                    BackgroundColor="#2d2d2d" 
+                    TextColor="#ff5252"
+                    BorderColor="#ff5252"
+                    BorderWidth="1"
+                    CornerRadius="20"
+                    HeightRequest="50"
+                    WidthRequest="250"
+                    HorizontalOptions="Center"
+                    Margin="0,0,0,10"/>
+
+            <Button Text="Kijelentkezés" 
+                    Command="{Binding LogoutCommand}"
+                    BackgroundColor="Transparent" 
+                    TextColor="#E91E63"
+                    BorderColor="#E91E63"
+                    BorderWidth="1"
+                    CornerRadius="20"
+                    HeightRequest="50"
+                    WidthRequest="200"
+                    HorizontalOptions="Center"/>
+
+            <Label Text="Verzió 1.0 - LoveSync" TextColor="#404040" HorizontalOptions="Center" FontSize="10"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

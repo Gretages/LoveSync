@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LoveSync.CategoryPage"
+             Title="Válassz kategóriát"
+             BackgroundColor="#1e1e1e"
+             Shell.NavBarIsVisible="False">
+
+    <VerticalStackLayout Spacing="25" Padding="30" VerticalOptions="Center">
+
+        <Label Text="Mit kerestek ma?" 
+               FontSize="28" FontAttributes="Bold" 
+               TextColor="White" HorizontalOptions="Center"/>
+
+        <Button Text="🎬 Filmek" 
+                Clicked="OnMoviesClicked"
+                BackgroundColor="#E91E63" 
+                TextColor="White"
+                HeightRequest="60"
+                CornerRadius="20"
+                FontAttributes="Bold"
+                FontSize="18"/>
+
+        <Button Text="🍔 Ételek / Étterem" 
+                Clicked="OnFoodClicked"
+                BackgroundColor="#2d2d2d" 
+                TextColor="White"
+                BorderColor="#E91E63"
+                BorderWidth="1"
+                HeightRequest="60"
+                CornerRadius="20"
+                FontAttributes="Bold"
+                FontSize="18"/>
+
+        <Button Text="🌳 Randi ötletek" 
+                Clicked="OnDateClicked"
+                BackgroundColor="#2d2d2d" 
+                TextColor="White"
+                BorderColor="#E91E63"
+                BorderWidth="1"
+                HeightRequest="60"
+                CornerRadius="20"
+                FontAttributes="Bold"
+                FontSize="18"/>
+
+        <Button Text="Vissza" 
+                Clicked="OnBackClicked"
+                BackgroundColor="Transparent" 
+                TextColor="Gray"
+                Margin="0,20,0,0"/>
+
+    </VerticalStackLayout>
+</ContentPage>

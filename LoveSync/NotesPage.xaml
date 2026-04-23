@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LoveSync.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="LoveSync.NotesPage"
+             Title="Üzenőfal"
+             BackgroundColor="#1e1e1e">
+
+    <ContentPage.BindingContext>
+        <vm:NotesViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Appearing" Command="{Binding OnAppearingCommand}" />
+        <toolkit:EventToCommandBehavior EventName="Disappearing" Command="{Binding OnDisappearingCommand}" />
+    </ContentPage.Behaviors>
+
+    <Grid RowDefinitions="*, Auto" Padding="15">
+
+        <CollectionView x:Name="MessagesList" Grid.Row="0" ItemsSource="{Binding Notes}" Margin="0,0,0,10">
+            <CollectionView.EmptyView>
+                <Label Text="Nincs még üzenet. Írj valamit! 📝" 
+                       TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Spacing="5" Margin="0,5">
+
+                        <HorizontalStackLayout Spacing="10">
+
+                            <Frame HeightRequest="35" WidthRequest="35" CornerRadius="17.5" Padding="0" 
+                                   BackgroundColor="#2d2d2d" BorderColor="#E91E63" IsClippedToBounds="True"
+                                   VerticalOptions="Center">
+                                <Image Source="{Binding ProfileImageSource, TargetNullValue='user_icon.png'}" 
+                                       Aspect="AspectFill"
+                                       HorizontalOptions="Fill" VerticalOptions="Fill"/>
+                            </Frame>
+
+                            <VerticalStackLayout Spacing="0" VerticalOptions="Center">
+                                <Label Text="{Binding UserName}" TextColor="#E91E63" FontSize="12" FontAttributes="Bold"/>
+                                <Label Text="{Binding Timestamp, StringFormat='{0:MM.dd HH:mm}'}" TextColor="Gray" FontSize="10"/>
+                            </VerticalStackLayout>
+
+                        </HorizontalStackLayout>
+
+                        <Frame BackgroundColor="#2d2d2d" CornerRadius="15" Padding="15" BorderColor="Transparent" Margin="45,0,0,0">
+                            <Label Text="{Binding Text}" TextColor="White" FontSize="16"/>
+                        </Frame>
+
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*, Auto" ColumnSpacing="10">
+            <Frame Grid.Column="0" BackgroundColor="#252525" CornerRadius="20" Padding="0" BorderColor="Gray">
+                <Entry Text="{Binding NewNoteText}" Placeholder="Üzenet..." PlaceholderColor="Gray" TextColor="White" Margin="15,0"/>
+            </Frame>
+
+            <Button Grid.Column="1" Text="➤" Command="{Binding SendNoteCommand}" 
+                    BackgroundColor="#E91E63" TextColor="White" CornerRadius="25" 
+                    WidthRequest="50" HeightRequest="50" FontAttributes="Bold" FontSize="20"/>
+        </Grid>
+    </Grid>
+</ContentPage>

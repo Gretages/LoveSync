@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LoveSync.MainPage"
+             Title="Főoldal"
+             BackgroundColor="#1e1e1e"
+             Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="30">
+
+            <Label Text="Szia! 👋" 
+                   FontSize="32" FontAttributes="Bold" TextColor="White"/>
+
+            <Label Text="Mit szeretnél ma csinálni?" 
+                   FontSize="18" TextColor="Gray" Margin="0,0,0,10"/>
+
+            <Frame BackgroundColor="#E91E63" CornerRadius="20" Padding="20" HasShadow="True" BorderColor="Transparent">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnStartSwipingClicked"/>
+                </Frame.GestureRecognizers>
+
+                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                    <Label Text="🔥" FontSize="40" VerticalOptions="Center"/>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Szavazás indítása" FontSize="20" FontAttributes="Bold" TextColor="White"/>
+                        <Label Text="Keress új programokat!" FontSize="14" TextColor="#ffcdd2"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="#2d2d2d" CornerRadius="20" Padding="20" HasShadow="True" BorderColor="#404040">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnOpenMatchesClicked"/>
+                </Frame.GestureRecognizers>
+
+                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                    <Label Text="❤️" FontSize="40" VerticalOptions="Center"/>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Közös találatok" FontSize="20" FontAttributes="Bold" TextColor="White"/>
+                        <Label Text="Nézd meg, miben egyeztetek!" FontSize="14" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="#2d2d2d" CornerRadius="20" Padding="20" HasShadow="True" BorderColor="#404040">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnNotesClicked"/>
+                </Frame.GestureRecognizers>
+
+                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                    <Label Text="📝" FontSize="40" VerticalOptions="Center"/>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Üzenőfal" FontSize="20" FontAttributes="Bold" TextColor="White"/>
+                        <Label Text="Hagyj üzenetet a párodnak!" FontSize="14" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="#2d2d2d" CornerRadius="20" Padding="20" HasShadow="True" BorderColor="#404040">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBucketListClicked"/>
+                </Frame.GestureRecognizers>
+
+                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                    <Label Text="✨" FontSize="40" VerticalOptions="Center"/>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Bakancslista" FontSize="20" FontAttributes="Bold" TextColor="White"/>
+                        <Label Text="Közös álmok és célok" FontSize="14" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="#2d2d2d" CornerRadius="20" Padding="20" HasShadow="True" BorderColor="#404040">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnProfileClicked"/>
+                </Frame.GestureRecognizers>
+
+                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                    <Label Text="👤" FontSize="40" VerticalOptions="Center"/>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Profilom" FontSize="20" FontAttributes="Bold" TextColor="White"/>
+                        <Label Text="Párosítás és beállítások" FontSize="14" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="#2d2d2d" CornerRadius="20" Padding="20" HasShadow="True" BorderColor="#404040">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCalendarClicked"/>
+                </Frame.GestureRecognizers>
+
+                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                    <Label Text="📅" FontSize="40" VerticalOptions="Center"/>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Naptár" FontSize="20" FontAttributes="Bold" TextColor="White"/>
+                        <Label Text="Tervezzétek meg a hetet!" FontSize="14" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

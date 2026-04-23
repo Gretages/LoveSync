@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LoveSync.ViewModels"
+             x:Class="LoveSync.SwipePage"
+             Title="Szavazás"
+             BackgroundColor="#1e1e1e"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.BindingContext>
+        <vm:SwipeViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <VerticalStackLayout VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             Spacing="20"
+                             IsVisible="{Binding IsFinished}">
+            <Label Text="🎉" FontSize="60" HorizontalOptions="Center"/>
+            <Label Text="Mára ennyi!" TextColor="White" FontSize="18" HorizontalOptions="Center"/>
+            <Button Text="Vissza a kategóriákhoz"
+                    Command="{Binding BackToCategoriesCommand}"
+                    BackgroundColor="#E91E63"
+                    TextColor="White"
+                    CornerRadius="20"/>
+        </VerticalStackLayout>
+
+        <Grid IsVisible="{Binding IsCardsVisible}"
+              RowDefinitions="*, Auto"
+              Padding="20"
+              RowSpacing="20">
+
+            <Frame Grid.Row="0"
+                   x:Name="CardFrame"
+                   BackgroundColor="White"
+                   CornerRadius="20"
+                   HasShadow="True"
+                   Padding="0"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   HeightRequest="500"
+                   WidthRequest="350">
+
+                <Frame.GestureRecognizers>
+                    <PanGestureRecognizer PanUpdated="OnPanUpdated"/>
+                </Frame.GestureRecognizers>
+
+                <Grid RowDefinitions="2*, *">
+
+                    <!-- KÉP -->
+                    <Grid Grid.Row="0">
+                        <!-- alatta mindig ott a placeholder -->
+                        <Image Source="placeholder.png" Aspect="AspectFill" />
+                        <!-- fölötte a tényleges -->
+                        <Image Source="{Binding CurrentIdeaImage}" Aspect="AspectFill" />
+                    </Grid>
+
+                    <!-- SZÖVEG -->
+                    <ScrollView Grid.Row="1"
+                                VerticalScrollBarVisibility="Default"
+                                Padding="0">
+                        <VerticalStackLayout Padding="20" Spacing="10">
+                            <Label Text="{Binding CurrentIdea.Title}"
+                                   FontSize="22"
+                                   FontAttributes="Bold"
+                                   TextColor="Black"/>
+
+                            <Label Text="{Binding CurrentIdea.Description}"
+                                   FontSize="14"
+                                   TextColor="Gray"/>
+                        </VerticalStackLayout>
+                    </ScrollView>
+
+                </Grid>
+            </Frame>
+
+            <HorizontalStackLayout Grid.Row="1"
+                                   VerticalOptions="End"
+                                   HorizontalOptions="Center"
+                                   Spacing="40"
+                                   Margin="0,0,0,20">
+                <Button Text="❌"
+                        FontSize="24"
+                        WidthRequest="60"
+                        HeightRequest="60"
+                        CornerRadius="30"
+                        BackgroundColor="#ffcdd2"
+                        TextColor="Red"
+                        Command="{Binding SwipeLeftCommand}"
+                        IsEnabled="{Binding IsSwipeEnabled}"/>
+
+                <Button Text="💚"
+                        FontSize="24"
+                        WidthRequest="60"
+                        HeightRequest="60"
+                        CornerRadius="30"
+                        BackgroundColor="#c8e6c9"
+                        TextColor="Green"
+                        Command="{Binding SwipeRightCommand}"
+                        IsEnabled="{Binding IsSwipeEnabled}"/>
+            </HorizontalStackLayout>
+
+        </Grid>
+    </Grid>
+</ContentPage>

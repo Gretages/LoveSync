@@ -1,0 +1,12 @@
+# Titkok
+**/Constants.cs
+
+# Build kimenetek
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio specifikus
+.vs/
+*.user
+*.suo
+*.shell_navigation_cache

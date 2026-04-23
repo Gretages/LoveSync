@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LoveSync.ViewModels"
+             x:Class="LoveSync.LoginPage"
+             Title="LoveSync Belépés"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#1e1e1e">
+
+    <VerticalStackLayout Spacing="20" Padding="30" VerticalOptions="Center">
+
+        <Label Text="LoveSync" 
+               FontSize="32" 
+               HorizontalOptions="Center" 
+               FontAttributes="Bold"
+               TextColor="#E91E63"/>
+
+        <Entry Placeholder="E-mail cím" 
+               Text="{Binding Email}" 
+               Keyboard="Email" 
+               TextColor="White"
+               
+               PlaceholderColor="Gray"/>
+
+        <Entry Placeholder="Jelszó" 
+               Text="{Binding Password}" 
+               IsPassword="True" 
+               TextColor="White"
+               PlaceholderColor="Gray"/>
+
+        <Button Text="Bejelentkezés" 
+                Command="{Binding LoginCommand}" 
+                BackgroundColor="#E91E63" 
+                TextColor="White"
+                CornerRadius="20"
+                FontAttributes="Bold"
+                WidthRequest="250"
+                HorizontalOptions="Center"/>
+
+        <Button Text="Nincs még fiókod? - Regisztráció" 
+                Command="{Binding GoToRegisterCommand}" 
+                BackgroundColor="Transparent" 
+                TextColor="#E91E63"
+                BorderColor="#E91E63"
+                BorderWidth="2"
+                CornerRadius="20"
+                HeightRequest="50"
+                FontAttributes="Bold"
+                WidthRequest="250"
+                HorizontalOptions="Center"/>
+
+        <Label Text="{Binding StatusMessage}" 
+               TextColor="Red" 
+               HorizontalOptions="Center" />
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="LoveSync.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:LoveSync"
+    Shell.FlyoutBehavior="Disabled"
+    BackgroundColor="#1e1e1e"
+    Title="LoveSync">
+
+    <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" Shell.TabBarIsVisible="False" />
+    <ShellContent Route="RegisterPage" ContentTemplate="{DataTemplate local:RegisterPage}" Shell.TabBarIsVisible="False" />
+    <ShellContent Route="PairingPage" ContentTemplate="{DataTemplate local:PairingPage}" Shell.TabBarIsVisible="False" />
+
+    <TabBar>
+        <Tab Title="Kezdőlap" Icon="home_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage"/>
+        </Tab>
+
+        <Tab Title="Szavazás" Icon="swipe_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:CategoryPage}" Route="CategoryPage"/>
+        </Tab>
+
+        <Tab Title="Találatok" Icon="heart_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:MatchesPage}" Route="MatchesPage"/>
+        </Tab>
+
+        <Tab Title="Üzenőfal" Icon="chat_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:NotesPage}" Route="NotesPage"/>
+        </Tab>
+
+        <Tab Title="Naptár" Icon="user_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:CalendarPage}" Route="CalendarPage"/>
+        </Tab>
+        
+        <Tab Title="Bakancslista" Icon="user_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:BucketListPage}" Route="BucketListPage"/>
+        </Tab>
+        
+        <Tab Title="Profil" Icon="user_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:ProfilePage}" Route="ProfilePage"/>
+        </Tab>
+    </TabBar>
+</Shell>

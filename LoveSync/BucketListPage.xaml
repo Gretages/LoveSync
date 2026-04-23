@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LoveSync.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models="clr-namespace:LoveSync.Models"
+             x:Class="LoveSync.BucketListPage"
+             Title="Bakancslista"
+             BackgroundColor="#1e1e1e">
+
+    <ContentPage.BindingContext>
+        <vm:BucketViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadItemsCommand}" />
+    </ContentPage.Behaviors>
+
+    <Grid RowDefinitions="*, Auto" Padding="20" RowSpacing="10">
+
+        <CollectionView Grid.Row="0" ItemsSource="{Binding Items}">
+            <CollectionView.EmptyView>
+                <Label Text="Még üres a lista. Vegyetek fel valamit! 📝" 
+                       TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:BucketItem">
+                    <Frame Margin="0,5" Padding="10" BackgroundColor="#2d2d2d" CornerRadius="10" BorderColor="Transparent">
+                        <Grid ColumnDefinitions="Auto, *, Auto">
+
+                            <CheckBox Grid.Column="0" 
+                                      IsChecked="{Binding IsCompleted}" 
+                                      Color="#E91E63"
+                                      CheckedChanged="OnItemCheckedChanged"/>
+
+                            <Label Grid.Column="1" Text="{Binding Title}" VerticalOptions="Center" TextColor="White" FontSize="16" Margin="10,0"/>
+
+                            <Button Grid.Column="2" Text="🗑️" 
+                                    BackgroundColor="Transparent" 
+                                    TextColor="White"
+                                    Clicked="OnDeleteClicked"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*, Auto" ColumnSpacing="10">
+            <Frame Grid.Column="0" BackgroundColor="#252525" CornerRadius="20" Padding="0" BorderColor="Gray">
+                <Entry Text="{Binding NewItemText}" Placeholder="Új kaland..." PlaceholderColor="Gray" TextColor="White" Margin="15,0"/>
+            </Frame>
+            <Button Grid.Column="1" Text="+" Command="{Binding AddItemCommand}" 
+                    BackgroundColor="#E91E63" TextColor="White" CornerRadius="20" WidthRequest="50" HeightRequest="50" FontAttributes="Bold" FontSize="20"/>
+        </Grid>
+    </Grid>
+</ContentPage>

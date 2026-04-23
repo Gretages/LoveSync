@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LoveSync.ViewModels"
+             x:Class="LoveSync.CalendarPage"
+             Title="Közös Naptár"
+             BackgroundColor="#1e1e1e">
+
+    <ContentPage.BindingContext>
+        <vm:CalendarViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto, *, Auto" Padding="15">
+
+        <Label Grid.Row="0" Text="📅 Programtervező" 
+               FontSize="24" FontAttributes="Bold" TextColor="White" 
+               HorizontalOptions="Center" Margin="0,0,0,15"/>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Events}">
+            <CollectionView.EmptyView>
+                <Label Text="Nincs közelgő program." TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,5" Padding="15" BackgroundColor="#2d2d2d" CornerRadius="15" BorderColor="Transparent">
+                        <Grid ColumnDefinitions="Auto, *, Auto, Auto" ColumnSpacing="5">
+
+                            <Frame Grid.Column="0" 
+                                   BackgroundColor="#E91E63" 
+                                   Padding="10" 
+                                   CornerRadius="10" 
+                                   WidthRequest="60" HeightRequest="60"
+                                   VerticalOptions="Center"
+                                   BorderColor="Transparent">
+                                <VerticalStackLayout VerticalOptions="Center" Spacing="0">
+                                    <Label Text="{Binding Date, StringFormat='{0:MMM}'}" 
+                                           TextColor="White" FontSize="12" HorizontalOptions="Center" FontAttributes="Bold" TextTransform="Uppercase"/>
+                                    <Label Text="{Binding Date, StringFormat='{0:dd}'}" 
+                                           TextColor="White" FontSize="20" HorizontalOptions="Center" FontAttributes="Bold"/>
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2" Margin="10,0,0,0">
+                                <Label Text="{Binding Title}" TextColor="White" FontSize="16" FontAttributes="Bold" LineBreakMode="TailTruncation"/>
+                                <Label Text="{Binding Date, StringFormat='{0:HH:mm}'}" TextColor="#E91E63" FontSize="12"/>
+                                <Label Text="{Binding Location}" TextColor="Gray" FontSize="12" LineBreakMode="TailTruncation"/>
+                            </VerticalStackLayout>
+
+                            <Button Grid.Column="2"
+                                    Text="🗺️" 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CalendarViewModel}}, Path=OpenMapCommand}"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="Transparent"
+                                    TextColor="White"
+                                    FontSize="20"
+                                    HeightRequest="50" WidthRequest="50"
+                                    VerticalOptions="Center"/>
+
+                            <Button Grid.Column="3" 
+                                    Text="🗑️" 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CalendarViewModel}}, Path=DeleteEventCommand}"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="Transparent"
+                                    TextColor="White"
+                                    FontSize="20"
+                                    HeightRequest="50" WidthRequest="50"
+                                    VerticalOptions="Center"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Frame Grid.Row="2" BackgroundColor="#252525" CornerRadius="20" Padding="15" Margin="0,10,0,0" BorderColor="Gray">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Új program felvétele:" TextColor="Gray" FontSize="12"/>
+
+                <Entry Text="{Binding NewEventTitle}" Placeholder="Mi a program? (pl. Mozi)" PlaceholderColor="Gray" TextColor="White"/>
+                <Entry Text="{Binding NewEventLocation}" Placeholder="Hol? (pl. Aréna)" PlaceholderColor="Gray" TextColor="White"/>
+
+                <HorizontalStackLayout Spacing="10">
+                    <DatePicker Date="{Binding NewEventDate}" TextColor="White" BackgroundColor="#2d2d2d" />
+                    <TimePicker Time="{Binding NewEventTime}" TextColor="White" BackgroundColor="#2d2d2d" />
+                </HorizontalStackLayout>
+
+                <Button Text="Hozzáadás" Command="{Binding AddEventCommand}" 
+                        BackgroundColor="#E91E63" TextColor="White" CornerRadius="10" FontAttributes="Bold"/>
+            </VerticalStackLayout>
+        </Frame>
+
+    </Grid>
+</ContentPage>
